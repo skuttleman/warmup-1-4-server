@@ -4,6 +4,10 @@ try {
 	console.error(err);
 }
 var express = require('express'), app = express();
+var cors = require('cors');
+var knex = require('knex')(require('./knexfile')[process.env.ENVIRONMENT || 'development']);
+
+app.use(cors());
 
 app.get('/', function(request, response) {
 	knex('broncos').then(function(broncos) {
